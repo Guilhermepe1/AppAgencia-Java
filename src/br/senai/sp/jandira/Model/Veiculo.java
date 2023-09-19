@@ -1,5 +1,7 @@
 package br.senai.sp.jandira.Model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Veiculo {
@@ -10,6 +12,8 @@ public class Veiculo {
 
     /** Instancia scanner */
     Scanner scanner = new Scanner(System.in);
+    /** Cria lista de veiculos */
+    public List<Veiculo> listaVeiculo = new ArrayList<>();
 
     public void cadastrarVeiculo() {
         System.out.println("------ Cadastro Veiculo ------");
@@ -31,7 +35,19 @@ public class Veiculo {
 
     }
 
-    public void listarVeiculo() {
-
+    public void consultaVeiculo() {
+        int num = 0;
+        System.out.println("Quantidade de veículos cadastrados: "+listaVeiculo.size());
+        for (Veiculo veiculo : listaVeiculo) {
+            num++;
+            System.out.println("---------- Veículo COD:"+num+" ----------");
+            System.out.println("Marca: "+marca);
+            System.out.println("Modelo: "+modelo);
+            System.out.println("Ano: "+ano);
+            System.out.println("Cor: "+cor);
+            System.out.println("Combustível: "+combustivel);
+            System.out.println("Valor: R$"+valor);
+        }
     }
+
 }
