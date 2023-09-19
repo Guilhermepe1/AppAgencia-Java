@@ -15,7 +15,7 @@ public class Veiculo {
     /** Cria lista de veiculos */
     public List<Veiculo> listaVeiculo = new ArrayList<>();
 
-    public void cadastrarVeiculo() {
+    public Veiculo cadastrarVeiculo(Veiculo veiculo) {
         System.out.println("------ Cadastro Veiculo ------");
         System.out.print("Informe a marca: ");
         marca = scanner.next();
@@ -32,7 +32,12 @@ public class Veiculo {
         System.out.println("--------------------------------");
         System.out.println("        Cadastro Finalizado!");
         System.out.println("--------------------------------");
+        return veiculo;
 
+    }
+
+    public void adicionarVeiculo(Veiculo veiculo) {
+        listaVeiculo.add(veiculo);
     }
 
     public void consultaVeiculo() {
@@ -41,13 +46,22 @@ public class Veiculo {
         for (Veiculo veiculo : listaVeiculo) {
             num++;
             System.out.println("---------- Veículo COD:"+num+" ----------");
-            System.out.println("Marca: "+marca);
-            System.out.println("Modelo: "+modelo);
-            System.out.println("Ano: "+ano);
-            System.out.println("Cor: "+cor);
-            System.out.println("Combustível: "+combustivel);
-            System.out.println("Valor: R$"+valor);
+            System.out.println("Marca: "+veiculo.marca);
+            System.out.println("Modelo: "+veiculo.modelo);
+            System.out.println("Ano: "+veiculo.ano);
+            System.out.println("Cor: "+veiculo.cor);
+            System.out.println("Combustível: "+veiculo.combustivel);
+            System.out.println("Valor: R$"+veiculo.valor);
         }
+    }
+
+    public Boolean pesquisarVeiculo(String modeloVeiculo) {
+        for (Veiculo veiculo : listaVeiculo) {
+            if (veiculo.modelo.equalsIgnoreCase(modeloVeiculo)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

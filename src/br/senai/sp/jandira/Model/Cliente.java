@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.Model;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,13 +10,15 @@ public class Cliente {
     /** Declara variaveis */
     String nome, email, endereco, dataNascimento;
     Long telefone, cpf, rg;
+    Double dinheiroDisponivel;
 
     /** Instancia scanner */
     Scanner scanner = new Scanner(System.in);
-    /** Cria lista de clientes */
-    public List<Cliente> listaCliente = new ArrayList<>();
 
-    public void cadastrarCliente() {
+    /** Cria lista de clientes */
+    List<Cliente> listaCliente = new ArrayList<>();
+
+    public Cliente cadastrarCliente(Cliente cliente) {
         System.out.println("------ Cadastro Cliente ------");
         System.out.print("Informe o nome: ");
         nome = scanner.nextLine();
@@ -32,24 +35,37 @@ public class Cliente {
         endereco = scanner.nextLine();
         System.out.print("Telefone: ");
         telefone = scanner.nextLong();
+        scanner.nextLine();
+        System.out.print("Qual valor deseja gastar: ");
+        dinheiroDisponivel = scanner.nextDouble();
+        scanner.nextLine();
+
         System.out.println("--------------------------------");
         System.out.println("        Cadastro Finalizado!");
         System.out.println("--------------------------------");
+
+        return cliente;
+    }
+
+    public void adicionarCliente(Cliente cliente) {
+        listaCliente.add(cliente);
     }
 
     public void consultaCliente() {
+
         int num = 0;
         System.out.println("Quantidade de clientes cadastrados: "+listaCliente.size());
         for (Cliente cliente : listaCliente) {
             num++;
             System.out.println("---------- Cliente COD:"+num+" ----------");
-            System.out.println("Nome: "+nome);
-            System.out.println("CPF: "+cpf);
-            System.out.println("RG: "+rg);
-            System.out.println("Data de Nascimento: "+dataNascimento);
-            System.out.println("E-mail: "+email);
-            System.out.println("Endereço: "+endereco);
-            System.out.println("Telefone: "+telefone);
+            System.out.println("Nome: "+cliente.nome);
+            System.out.println("CPF: "+cliente.cpf);
+            System.out.println("RG: "+cliente.rg);
+            System.out.println("Data de Nascimento: "+cliente.dataNascimento);
+            System.out.println("E-mail: "+cliente.email);
+            System.out.println("Endereço: "+cliente.endereco);
+            System.out.println("Telefone: "+cliente.telefone);
+            System.out.println("Saldo: R$"+cliente.dinheiroDisponivel);
         }
     }
 }
