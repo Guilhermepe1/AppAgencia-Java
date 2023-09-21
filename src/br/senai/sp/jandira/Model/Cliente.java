@@ -1,8 +1,6 @@
 package br.senai.sp.jandira.Model;
 
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -67,5 +65,14 @@ public class Cliente {
             System.out.println("Telefone: "+cliente.telefone);
             System.out.println("Saldo: R$"+cliente.dinheiroDisponivel);
         }
+    }
+
+    public Cliente pesquisarComprador(String comprador) {
+        for (Cliente cliente : listaCliente) {
+            if (cliente.nome.equalsIgnoreCase(comprador)) {
+                return cliente;
+            }
+        }
+        return null;
     }
 }

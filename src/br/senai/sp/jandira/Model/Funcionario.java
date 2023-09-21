@@ -63,4 +63,13 @@ public class Funcionario {
 
         return bonus = objVeiculo.valor * 0.10;
     }
+
+    public Funcionario pesquisarVendedor(String vendedor) {
+        for (Funcionario funcionario : listaFuncionario) {
+            if (funcionario.nome.equalsIgnoreCase(vendedor)) {
+                return funcionario;
+            }
+        }
+        return null;
+    }
 }

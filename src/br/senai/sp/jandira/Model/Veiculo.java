@@ -64,4 +64,13 @@ public class Veiculo {
         return false;
     }
 
+    public Veiculo pesquisarVeiculoCompra(String modeloVeiculo) {
+        for (Veiculo veiculo : listaVeiculo) {
+            if (veiculo.modelo.equalsIgnoreCase(modeloVeiculo)) {
+                return veiculo;
+            }
+        }
+        return null;
+    }
+
 }

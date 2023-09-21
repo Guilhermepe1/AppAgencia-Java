@@ -6,11 +6,11 @@ import java.util.Scanner;
 
 public class Menu {
 
-    /** Instancia Cliente */
+    /** Instancia Cliente para referencia da lista */
     Cliente cliente = new Cliente();
-    /** Instancia Veiculo */
+    /** Instancia Veiculo para referencia da lista */
     Veiculo veiculo = new Veiculo();
-    /** Instancia Funcionario */
+    /** Instancia Funcionario para referencia da lista */
     Funcionario funcionario = new Funcionario();
     /** Instancia Venda */
     Venda venda = new Venda();
@@ -22,11 +22,8 @@ public class Menu {
         int escolha = 0;
         Boolean continua = true;
 
-
-
         /** Inicia laco de repeticao do menu */
         while (continua) {
-
 
             System.out.println("---------------------------------");
             System.out.println("-       Escolha uma opção       -");
@@ -43,8 +40,6 @@ public class Menu {
             escolha = scanner.nextInt();
             scanner.nextLine();
             System.out.println("---------------------------------");
-
-
 
             /** Seleciona metodo de acordo com a escolha */
             switch (escolha) {
@@ -64,18 +59,37 @@ public class Menu {
                     funcionario.adicionarFuncionario(criaFuncionario);
                     break;
                 case 4:
-                    venda.realizarVenda(cliente, veiculo, funcionario);
+//                    venda.efetuarVenda(cliente, veiculo, funcionario);
 
+                    cliente.consultaCliente();
+                    System.out.println("Informe qual cliente deseja comprar um veiculo: ");
+                    String comprador = scanner.nextLine();
+                    Cliente objComprador = cliente.pesquisarComprador(comprador);
 
+                    veiculo.consultaVeiculo();
+                    System.out.println("Informe qual veículo: ");
+                    String veiculoSelecionado = scanner.nextLine();
+                    Veiculo objVeiculoVendido = veiculo.pesquisarVeiculoCompra(veiculoSelecionado);
 
-//                    funcionario.bonusFuncionario(veiculo);
-//
-//                    System.out.println("O Funcionario recebeu: " + funcionario.bonus);
+                    funcionario.consultaFuncionario();
+                    System.out.println("Informe quem é o vendedor: ");
+                    String vendedor = scanner.nextLine();
+                    Funcionario objVendedor = funcionario.pesquisarVendedor(vendedor);
 
-//                    JOptionPane.showMessageDialog(null, "Valeu Pelo Dinheiro!", "Finalização Venda", JOptionPane.WARNING_MESSAGE);
+                    boolean vender = venda.realizarVenda(objComprador, objVeiculoVendido);
+
+                    if (vender){
+
+                        objVendedor.bonusFuncionario(objVeiculoVendido);
+
+                        System.out.println("O Funcionario recebeu: " + objVendedor.bonus);
+
+                        JOptionPane.showMessageDialog(null, "Valeu Pelo Dinheiro!", "Finalização Venda", JOptionPane.WARNING_MESSAGE);
+                    }
 
                     break;
                 case 5:
+                    /** Inicia laco de repeticao do menu de consultas */
                     Boolean escolhaConsulta = true;
                     while (escolhaConsulta) {
                         System.out.println("---------------------------------");
